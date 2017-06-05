@@ -3,6 +3,7 @@
 
 import tweepy #https://github.com/tweepy/tweepy
 import csv
+import pandas as pd
 
 #Twitter API credentials
 consumer_key = "b9glmyLpVzNp9p702saTE8PJX"
@@ -10,6 +11,17 @@ consumer_secret = "KE86Y4na2kwKAi9xoiziv95v2ZVwFc4wWLbzjfjysd7AmSa75K"
 access_key = "871714486733996032-jWhoDmXogvvYCaTZZrhBsdVgvaLiSGr"
 access_secret = "CMr6SwbK5pK9M69DdBfBFdDM0lZoNTR0peBNEPI8ipHZu"
 
+df = pd.read_csv('mpdata.csv')
+
+twitterHandles = []
+twitterParty = []
+
+for elem in df.TWITTER:
+    elem = elem.translate(None, '@')
+    twitterHandles.append(elem)
+
+for elem in df.CONSTITUENCY:
+    twitterParty.append(elem)
 
 def get_all_tweets(screen_name):
 	#Twitter only allows access to a users most recent 3240 tweets with this method
@@ -32,7 +44,7 @@ def get_all_tweets(screen_name):
 	oldest = alltweets[-1].id - 1
 	
 	#keep grabbing tweets until there are no tweets left to grab
-	while len(new_tweets) > 0:
+	while len(new_tweets) > 0 and len(alltweets) < 200:
 		print "getting tweets before %s" % (oldest)
 		
 		#all subsiquent requests use the max_id param to prevent duplicates
@@ -47,17 +59,22 @@ def get_all_tweets(screen_name):
 		print "...%s tweets downloaded so far" % (len(alltweets))
 	
 	#transform the tweepy tweets into a 2D array that will populate the csv	
-	outtweets = [[tweet.id_str, tweet.created_at, tweet.text.encode("utf-8")] for tweet in alltweets]
+#	outtweets = [[tweet.id_str, tweet.created_at, tweet.text.encode("utf-8")] for tweet in alltweets]
+
+        outtweets = [[tweet.text.encode("utf-8")] for tweet in alltweets]
 	
 	#write the csv	
-	with open('%s_tweets.csv' % screen_name, 'wb') as f:
+	with open('%s.csv' % screen_name, 'wb') as f:
 		writer = csv.writer(f)
-		writer.writerow(["id","created_at","text"])
+#		writer.writerow(["id","created_at","text"])
 		writer.writerows(outtweets)
 	
 	pass
 
-
 if __name__ == '__main__':
-	#pass in the username of the account you want to download
-	get_all_tweets("jeremycorbyn")
+
+    for elem in twitterHandles[:2]:
+        print elem
+
+        #pass in the username of the account you want to download
+        get_all_tweets(elem)
