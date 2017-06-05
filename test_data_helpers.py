@@ -4,19 +4,19 @@ import itertools
 from collections import Counter
 import random, csv
 
-POS_DATASET_PATH = 'twitter-sentiment-dataset/tw-data.pos'
-NEG_DATASET_PATH = 'twitter-sentiment-dataset/tw-data.neg'
-VOC_PATH = 'twitter-sentiment-dataset/vocab.csv'
-VOC_INV_PATH = 'twitter-sentiment-dataset/vocab_inv.csv'
+POS_DATASET_PATH = 'twitter-dataset/tw-data.pos'
+NEG_DATASET_PATH = 'twitter-dataset/tw-data.neg'
+VOC_PATH = 'twitter-dataset/vocab.csv'
+VOC_INV_PATH = 'twitter-dataset/vocab_inv.csv'
 
 
 def clean_str(string):
     """
-    Tokenizes common abbreviations and punctuation, removes unwanted characters. 
+    Tokenizes common abbreviations and punctuation, removes unwanted characters.
     Returns the clean string.
     """
     string = re.sub(r"[^A-Za-z0-9(),!?\'\`]", " ", string)
-    string = re.sub(r'(.)\1+', r'\1\1', string) 
+    string = re.sub(r'(.)\1+', r'\1\1', string)
     string = re.sub(r"\'s", " \'s", string)
     string = re.sub(r"\'ve", " \'ve", string)
     string = re.sub(r"n\'t", " n\'t", string)
@@ -34,7 +34,7 @@ def clean_str(string):
 
 def sample_list(list, dividend):
     """
-    Returns 1/dividend-th of the given list, randomply sampled. 
+    Returns 1/dividend-th of the given list, randomply sampled.
     """
     return random.sample(list, len(list)/dividend)
 
@@ -43,7 +43,7 @@ def load_data_and_labels(reduced_dataset):
     """
     Loads data from files, processes the data and creates two lists, one of
     strings and one of labels.
-    Returns the lists. 
+    Returns the lists.
     """
     print "\tdata_helpers: loading positive examples..."
     positive_examples = list(open(POS_DATASET_PATH).readlines())
@@ -93,7 +93,7 @@ def pad_sentences(sentences, padding_word="<PAD/>"):
 
 def pad_sentences_to(sentences, pad_to, padding_word="<PAD/>"):
     """
-    Pads all sentences to the pad_to lenght. 
+    Pads all sentences to the pad_to length.
     Returns the padded senteces.
     """
     sequence_length = pad_to
@@ -124,7 +124,7 @@ def build_vocab():
 def build_input_data(sentences, labels, vocabulary):
     """
     Maps sentencs and labels to vectors based on a vocabulary.
-    Returns the mapped lists. 
+    Returns the mapped lists.
     """
     x = np.array([[vocabulary[word] for word in sentence]
                   for sentence in sentences])
@@ -144,7 +144,7 @@ def string_to_int(sentence, vocabulary, max_len):
     x_text = [clean_str(sent) for sent in x_text]
     x_text = [s.split(" ") for s in x_text]
     padded_x_text = pad_sentences_to(x_text, max_len)
-    try: 
+    try:
         x = np.array([[vocabulary[word] for word in sentence]
                       for sentence in padded_x_text])
         return x
