@@ -1,8 +1,8 @@
 import tensorflow as tf
 import numpy as np
 from random import randint
-from generic_helpers import *
-from data_helpers import batch_iter, load_data, string_to_int
+from test_generic_helpers import *
+from test_data_helpers import batch_iter, load_data, string_to_int
 import os
 import glob
 import time

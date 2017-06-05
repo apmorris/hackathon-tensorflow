@@ -57,7 +57,7 @@ for row in pd_full_dataset.iterrows():
 
     tweet = new_tweet.strip() + '\n'
 
-    if line[1].strip() == '1':
+    if line[1] == 1:
         pos_dataset.write(tweet)
     else:
         neg_dataset.write(tweet)
