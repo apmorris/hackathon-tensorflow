@@ -1,5 +1,6 @@
 import re
-from tqdm import tqdm
+import pandas as pd
+#from tqdm import tqdm
 
 """
 Reads the csv dataset available at
@@ -22,19 +23,20 @@ Does some word preprocessing during the parsing.
 # df.SentimentText = df.SentimentText.str.replace('&lt;', ' < ')
 
 try:
-    full_dataset = open("twitter-dataset/Ed_Miliband.csv", "r")
+    pd_full_dataset = pd.read_csv("twitter-dataset/Ed_Miliband.csv")
+    #full_dataset = open("twitter-dataset/Ed_Miliband.csv", "r")
     pos_dataset = open("twitter-dataset/tw-data.pos", "w")
     neg_dataset = open("twitter-dataset/tw-data.neg", "w")
 except IOError:
-    print "Failed to open file"
+    print("Failed to open file")
     quit()
 
-csv_lines = full_dataset.readlines()
+#csv_lines = full_dataset.readlines()
 i = 0.0
 
-for line in tqdm(csv_lines):
+for row in pd_full_dataset.iterrows():
     i += 1.0
-    line = line.split(",", 3)
+    line = row[1].values
     tweet = line[0].strip() #was 3
     new_tweet = ''
 
