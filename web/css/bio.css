@@ -1,0 +1,38 @@
+.authorbox {
+    background-color: #F7F7F7;
+    color: #555; 
+    padding: 10px 0px;
+    min-height: 150px;
+    overflow: hidden;
+    width: 100%;
+    clear: both;
+    margin: 10px 0px;
+}
+.authorbox h3{
+    margin-top: 10px;
+}
+.authorbox .authorimg {
+    display: block;
+    float: left;
+    width: 150px;
+    margin-top: 10px;
+}
+
+.authorimg img{
+    height: 150px;
+}
+ 
+.authorimg {
+    width: 150px;
+    max-width: 100% !important;
+    border: 0;
+    text-shadow: none;
+    padding: 0;
+}
+.authorbox .wraptext {
+    margin-left: 165px;
+    margin-right: 10px;
+    line-height: 1.5em;
+    font-size: 0.9em;
+    text-align: justify;
+}
