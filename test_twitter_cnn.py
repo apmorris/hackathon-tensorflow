@@ -442,8 +442,10 @@ if FLAGS.custom_input != '':
 
 if FLAGS.custom_multiple_input != '':
     log('Evaluating custom input:', FLAGS.custom_input)
-    mean = evaluate_sentences_mean(FLAGS.custom_multiple_input, vocabulary)
-    print(mean)
+    mean_cons = evaluate_sentences_mean(FLAGS.custom_multiple_input, vocabulary)
+    mean_lab = 1 - mean_cons
+    print_blue(str(mean_cons), 'Conservative-ness')
+    print_red(str(mean_lab), 'Labour-ness')
     sys.stdout.flush()
 
 
