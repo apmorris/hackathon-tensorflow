@@ -1,4 +1,2 @@
-output/
-output/*
 *.log
 *.pyc
