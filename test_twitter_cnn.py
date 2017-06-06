@@ -4,8 +4,10 @@ from random import randint
 from test_generic_helpers import *
 from test_data_helpers import batch_iter, load_data, string_to_int
 import os
+import sys
 import glob
 import time
+import twitterpull_single
 from tensorflow.python.framework.graph_util import convert_variables_to_constants
 from tqdm import tqdm
 
@@ -82,12 +84,12 @@ def evaluate_sentence(sentence, vocabulary):
                                  dropout_keep_prob: 1.0})
     unnorm_result = sess.run(network_out, feed_dict={data_in: x_to_eval,
                                                      dropout_keep_prob: 1.0})
-    network_sentiment = 'POS' if result == 1 else 'NEG'
+    network_sentiment = 'LABOUR' if result == 1 else 'CONSERVATIVE'
     log('Custom input evaluation:', network_sentiment)
-    log('Actual output:', str(unnorm_result[0]))
+    log('[Conservative-ness, Labour-ness]:', str(unnorm_result[0]))
 
 
-def evaluate_sentences_mean(sentences, vocabulary):
+def evaluate_sentences_mean(twitterhandle, vocabulary):
     """
     Translates a string to its equivalent in the integer vocabulary and feeds it
     to the network.
@@ -95,7 +97,10 @@ def evaluate_sentences_mean(sentences, vocabulary):
     """
     norm = 0
     tot = 0
+    sentences = twitterpull_single.get_all_tweets(twitterhandle)
+    #sentences = ['corbyn', 'strong_and_stable', 'tory']
     for sentence in sentences:
+        norm = norm + 1
         tot = tot + evaluate_sentence_nostdo(sentence,vocabulary)
     return tot/norm
 
@@ -111,7 +116,7 @@ def evaluate_sentence_nostdo(sentence, vocabulary):
                                  dropout_keep_prob: 1.0})
     unnorm_result = sess.run(network_out, feed_dict={data_in: x_to_eval,
                                                      dropout_keep_prob: 1.0})
-    return result
+    return unnorm_result[0][0]
 
 # Hyperparameters
 tf.flags.DEFINE_boolean('train', False,
@@ -131,7 +136,7 @@ tf.flags.DEFINE_string('device', 'cpu', 'Type of device to run the network on.'
 tf.flags.DEFINE_string('custom_input', '',
                        'The program will print the network output for the '
                        'given input string.')
-tf.flags.DEFINE_string('custom_multiple_minput', '',
+tf.flags.DEFINE_string('custom_multiple_input', '',
                        'The program will print the network output for the '
                        'given set of input strings.')
 tf.flags.DEFINE_string('filter_sizes', '3,4,5',
@@ -436,8 +441,10 @@ if FLAGS.custom_input != '':
     evaluate_sentence(FLAGS.custom_input, vocabulary)
 
 if FLAGS.custom_multiple_input != '':
+    log('Evaluating custom input:', FLAGS.custom_input)
     mean = evaluate_sentences_mean(FLAGS.custom_multiple_input, vocabulary)
-    log('average:', mean)
+    print(mean)
+    sys.stdout.flush()
 
 
 # Evaluate held-out batch

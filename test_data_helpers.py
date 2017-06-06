@@ -3,6 +3,7 @@ import re
 import itertools
 from collections import Counter
 import random, csv
+import sys
 
 POS_DATASET_PATH = 'twitter-dataset/tw-data.pos'
 NEG_DATASET_PATH = 'twitter-dataset/tw-data.neg'
@@ -144,6 +145,13 @@ def string_to_int(sentence, vocabulary, max_len):
     x_text = [clean_str(sent) for sent in x_text]
     x_text = [s.split(" ") for s in x_text]
     padded_x_text = pad_sentences_to(x_text, max_len)
+    todelete = []
+    for sentence in padded_x_text:
+        i = 0
+        for word in sentence:
+            if word not in vocabulary:
+                sentence[i] = '<PAD/>'
+            i = i + 1
     try:
         x = np.array([[vocabulary[word] for word in sentence]
                       for sentence in padded_x_text])
