@@ -82,9 +82,9 @@ def evaluate_sentence(sentence, vocabulary):
                                  dropout_keep_prob: 1.0})
     unnorm_result = sess.run(network_out, feed_dict={data_in: x_to_eval,
                                                      dropout_keep_prob: 1.0})
-    network_sentiment = 'POS' if result == 1 else 'NEG'
+    network_sentiment = 'LABOUR' if result == 1 else 'CONSERVATIVE'
     log('Custom input evaluation:', network_sentiment)
-    log('Actual output:', str(unnorm_result[0]))
+    log('Conservative-ness, Labour-ness):', str(unnorm_result[0]))
 
 # Hyperparameters
 tf.flags.DEFINE_boolean('train', False,
@@ -258,7 +258,7 @@ with tf.device(device):
     cross_entropy = -tf.reduce_sum(data_out * tf.log(network_out))
 
     # Training algorithm
-    train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
+    train_step = tf.train.AdamOptimizer(1e-3).minimize(cross_entropy)
 
     # Testing operations
     correct_prediction = tf.equal(tf.argmax(network_out, 1),
@@ -428,3 +428,32 @@ if FLAGS.save_protobuf:
                          as_text=False)
     tf.train.write_graph(minimal_graph, RUN_DIR, 'minimal_graph.txt',
                          as_text=True)
+
+
+def plot_with_labels(low_dim_embs, labels, filename='tsne.png'):
+  assert low_dim_embs.shape[0] >= len(labels), "More labels than embeddings"
+  plt.figure(figsize=(18, 18))  # in inches
+  for i, label in enumerate(labels):
+    x, y = low_dim_embs[i, :]
+    plt.scatter(x, y)
+    plt.annotate(label,
+                 xy=(x, y),
+                 xytext=(5, 2),
+                 textcoords='offset points',
+                 ha='right',
+                 va='bottom')
+
+  plt.savefig(filename)
+
+try:
+  from sklearn.manifold import TSNE
+  import matplotlib.pyplot as plt
+
+  tsne = TSNE(perplexity=30, n_components=2, init='pca', n_iter=5000)
+  plot_only = 500
+  low_dim_embs = tsne.fit_transform(W[:plot_only, :])
+  labels = [vocabulary_inv[i] for i in xrange(plot_only)]
+  plot_with_labels(low_dim_embs, labels)
+
+except ImportError:
+  print("Please install sklearn, matplotlib, and scipy to visualize embeddings.")
