@@ -1,0 +1,42 @@
+table{
+    margin:0 auto;
+    font-family: HelveticaNeue-Light,helvetica;
+    font-size: 0.9em;
+    border-collapse: collapse;
+    width: 60%;
+}
+
+td {
+    border: 1px solid white;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    border: 1px solid white;
+    padding: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    font-weight: normal;
+}
+
+tr:nth-child(even) {
+    background-color: lightgray;
+}
+
+tr:first-child {
+    background-color: darkslategray;
+    color: white;
+}
+
+@media screen and (max-width: 650px){
+    
+    table{
+    margin:0 auto;
+    font-family: HelveticaNeue-Light,helvetica;
+    font-size: 0.9em;
+    border-collapse: collapse;
+    width: 90%;
+    }
+    
+}
