@@ -1,0 +1,219 @@
+
+h1, h2, h3, h4{
+    font-family: HelveticaNeue-Light,helvetica;
+    color: black;
+    line-height: 2em;
+}
+h1{ font-size: 1.9em; font-family: helvetica}
+h2{ font-size: 1.6em; font-family: helvetica}
+h3{ font-size: 1.3em; font-family: helvetica}
+
+p{ 
+    line-height: 1.5em;
+    font-size: 1.em;
+    font-family: HelveticaNeue-Light,helvetica;
+    margin-bottom: 1em;
+    text-align: justify;
+}
+
+a{
+    color: darkslategrey;
+    text-decoration: underline;
+}
+a:hover,
+a:active{ text-decoration: none; }
+
+
+.twitterbox {
+    background-color: #F7F7F7;
+    color: #555; 
+    overflow: hidden;
+    width: 100%;
+    clear: both;
+}
+.twitterbox .twitterText {
+    display: block;
+    float: left;
+}
+
+.twitterbox .inputBox{
+    float: left;
+    height: 50px;
+    width: 300px;
+    border: 5px;
+    text-shadow: none;
+    margin-left:10px;
+}
+
+.teambox {
+    width: 100%;
+}
+
+.teambox img{
+    display: block;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.resultbox {
+    width: 100%;
+}
+
+.resultbox h3{
+    text-align: center;
+}
+
+.resultbox img{
+    display: block;
+    width: 60%;
+    margin: 0 auto;
+}
+
+
+#nav{
+    width: 100%;
+    background-color: black;
+    text-align: left;
+    height: 30px;
+}
+#nav ul{}
+
+#nav ul li{
+    display: inline-block;
+    height: 100%;
+}
+#nav ul li a{
+    padding: 5px 30px;
+    color: white;
+    text-decoration: none;
+    line-height: 28px;
+    box-shadow: 0px 2px darkgray;
+}
+#nav ul li a:hover{
+				background-color: orange;
+                
+}
+#nav ul li a:active{ background-color: orange; }
+
+.banner{ 
+    position: relative; 
+    width: 100%;
+    background-color: white;
+}
+
+#banner-image{
+    width: 100%;
+}
+
+.banner-text{ 
+    position: absolute; 
+    top: 10px; left: 10%; 
+    color: white;
+    text-align: left;
+    font-size: 0.8em;
+}
+
+body{
+    font-family: HelveticaNeue-Light,helvetica;
+    background: lightgrey;
+}
+
+#page{ 
+    margin: 0 2%;
+}
+
+#content{
+    padding: 20px 20px;
+    background: white;
+}
+
+#footer{
+    border-bottom: 1px #ccc solid;
+    margin-bottom: 10px;
+}
+#footer p{
+    text-align: right;
+    text-transform: uppercase;
+    font-size: 0.7em;
+    color: grey;
+}
+
+#map{
+    margin: 10px auto;
+    width: 80%;
+    height: 400px;
+}
+
+/*#content,*/
+/*ul li a{ box-shadow: 0px 1px 1px #999; }*/
+
+@media screen and (max-width: 650px){
+
+h1{ font-size: 1.5em; font-family: helvetica}
+h2{ font-size: 1.3em; font-family: helvetica}
+h3{ font-size: 1.0em; font-family: helvetica}
+
+p{ 
+    line-height: 1.5em;
+    font-size: 0.9em;
+    font-family: HelveticaNeue-Light,helvetica;
+    margin-bottom: 1em;
+}
+    
+#nav{
+    width: 100%;
+    background-color: black;
+    text-align: left;
+    height: 128px;
+}
+
+#nav ul li{
+    margin: 0 0 2px 0;
+    width: 100%;
+    text-align: center;
+}
+    
+#nav ul li a{
+    background: black;
+    color: white;
+    text-decoration: none;
+    line-height: 20px;
+    box-shadow: 0px 2px darkgray;
+    display: block;
+}
+
+#page{ 
+    margin: 0 0%;
+    margin-bottom: 10px;
+}
+    
+#content{
+    padding: 10px 5px;
+    background: white;
+}
+    
+.banner{ 
+    height: 80.25px;
+    background-color: white;
+}
+
+#banner-image{
+    float: right;
+    width: 900px;
+}
+
+.banner-text{ 
+    position: absolute; 
+    top: 10px; left: 10px; 
+    color: white;
+    text-align: left;
+    font-size: 0.7em;
+}
+    
+#map{
+    margin: 10px 0px;
+    width: 100%;
+    height: 400px;
+}
+    
+}

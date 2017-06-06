@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <title>TweetPredict</title>
+        
+        <!-- import stylesheet -->
+        <link rel="stylesheet" href="./css/reset.css" type="text/css" />
+        <link rel="stylesheet" href="./css/style.css" type="text/css" />
+        <link rel="stylesheet" href="./css/bio.css" type="text/css" />
+        <link rel="stylesheet" href="./css/form.css" type="text/css" />
+        
+    </head>
+    
+    <!-- webpage content -->
+    <body>
+        
+<!--
+        <div id="nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="upcoming.html">Upcoming Seminars</a></li>
+                <li><a href="conference.html">Conference</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+-->
+        
+        <div id="page">
+            <div class="banner">
+                <img id="banner-image" src="./images/Banner.svg" alt="Tweepy Banner"/>
+                <h1 class="banner-text">HACKATHON 2017 - TEAM 6</h1>
+            </div>
+            
+            <div id="content">
+                <h1>TwitPredict</h1>
+                <p>
+                The TensorFlow Twitter Predictor
+                </p>
+                
+                <p>
+                Twitter Predictor uses TensorFlow to analyse c. 100,000 tweets from Labour and Conservative polititians and predict the political sway of a given tweet.  
+                </p>
+                
+                
+                
+<!--
+                <div class="twitterbox">
+                    <div class="twitterText">
+                        <h2>&#64;:</h2>
+                    </div>
+                    <div class="inputBox">
+                        
+                    </div>
+                </div>
+-->
+                
+                <form action="result.html">
+                    <fieldset>
+                        <div>
+                            <input type="text" id="twitterHandle" name="user_twitterHandle" autofocus placeholder="&#64;EdBallsDay">
+                        </div>
+                    </fieldset>
+                    
+                        <input type="Submit"
+                               value="Predict">
+                </form>
+                
+                <h2>Team 6</h2>
+                
+                <div class="teambox">
+                    <img src="./images/team6.png" alt="speaker" />
+                </div>
+                
+            </div>
+            <div id="footer">
+                <p>
+<!--
+                Maintained by Tom Meltzer - <a href="mailto:thomas.meltzer.15@ucl.ac.uk?Subject=UCL%20Website%20Maintenance"
+                    target="_blank">thomas.meltzer.15@ucl.ac.uk</a>
+-->
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

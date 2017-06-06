@@ -6,23 +6,6 @@ import tweepy #https://github.com/tweepy/tweepy
 import csv
 import pandas as pd
 
-#Twitter API credentials
-consumer_key = "b9glmyLpVzNp9p702saTE8PJX"
-consumer_secret = "KE86Y4na2kwKAi9xoiziv95v2ZVwFc4wWLbzjfjysd7AmSa75K"
-access_key = "871714486733996032-jWhoDmXogvvYCaTZZrhBsdVgvaLiSGr"
-access_secret = "CMr6SwbK5pK9M69DdBfBFdDM0lZoNTR0peBNEPI8ipHZu"
-
-df = pd.read_csv('mpdata.csv')
-
-twitterHandles = []
-twitterParty = []
-
-for elem in df.TWITTER:
-    elem = elem.translate(None, '@')
-    twitterHandles.append(elem)
-
-for elem in df.PARTY:
-    twitterParty.append(elem)
 
 def get_all_tweets(screen_name):
     #Twitter only allows access to a users most recent 3240 tweets with this method
@@ -51,6 +34,26 @@ def get_all_tweets(screen_name):
         outtweets.append(temp)
 
     return outtweets
+
+#Twitter API credentials
+consumer_key = "b9glmyLpVzNp9p702saTE8PJX"
+consumer_secret = "KE86Y4na2kwKAi9xoiziv95v2ZVwFc4wWLbzjfjysd7AmSa75K"
+access_key = "871714486733996032-jWhoDmXogvvYCaTZZrhBsdVgvaLiSGr"
+access_secret = "CMr6SwbK5pK9M69DdBfBFdDM0lZoNTR0peBNEPI8ipHZu"
+
+df = pd.read_csv('mpdata.csv')
+
+twitterHandles = []
+twitterParty = []
+
+for elem in df.TWITTER:
+    elem = elem.translate(None, '@')
+    twitterHandles.append(elem)
+
+for elem in df.PARTY:
+    twitterParty.append(elem)
+
+
 
     
 tweeter = []
