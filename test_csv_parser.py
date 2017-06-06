@@ -23,7 +23,7 @@ Does some word preprocessing during the parsing.
 # df.SentimentText = df.SentimentText.str.replace('&lt;', ' < ')
 
 try:
-    pd_full_dataset = pd.read_csv("twitter-dataset/Ed_Miliband.csv",encoding = "ISO-8859-1")
+    pd_full_dataset = pd.read_csv("twitter-dataset/trainingData.csv",encoding = "ISO-8859-1")
     #full_dataset = open("twitter-dataset/Ed_Miliband.csv", "r")
     pos_dataset = open("twitter-dataset/tw-data.pos", "w")
     neg_dataset = open("twitter-dataset/tw-data.neg", "w")
@@ -37,8 +37,11 @@ i = 0.0
 for row in pd_full_dataset.iterrows():
     i += 1.0
     line = row[1].values
-    tweet = line[0].strip() #was 3
+    tweet = line[1].strip() #was 3
     new_tweet = ''
+
+    #Add below any recurrent words you want to group
+    tweet = re.sub('strong\s*and\s*stable', 'strongandstable', tweet);
 
     for word in tweet.split():
         # String preprocessing
@@ -57,7 +60,7 @@ for row in pd_full_dataset.iterrows():
 
     tweet = new_tweet.strip() + '\n'
 
-    if line[1] == 1:
+    if line[0].strip() == 'labour':
         pos_dataset.write(tweet)
     else:
         neg_dataset.write(tweet)
