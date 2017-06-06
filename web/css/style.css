@@ -55,6 +55,19 @@ a:active{ text-decoration: none; }
     margin: 0 auto;
 }
 
+.resultbox {
+    width: 100%;
+}
+
+.resultbox h3{
+    text-align: center;
+}
+
+.resultbox img{
+    display: block;
+    width: 60%;
+    margin: 0 auto;
+}
 
 
 #nav{
