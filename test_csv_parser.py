@@ -23,7 +23,7 @@ Does some word preprocessing during the parsing.
 # df.SentimentText = df.SentimentText.str.replace('&lt;', ' < ')
 
 try:
-    pd_full_dataset = pd.read_csv("twitter-dataset/trainingData.csv",encoding = "ISO-8859-1")
+    pd_full_dataset = pd.read_csv("twitter-dataset/trainingData.csv")#,encoding = "ISO-8859-1")
     #full_dataset = open("twitter-dataset/Ed_Miliband.csv", "r")
     pos_dataset = open("twitter-dataset/tw-data.pos", "w")
     neg_dataset = open("twitter-dataset/tw-data.neg", "w")
@@ -60,7 +60,7 @@ for row in pd_full_dataset.iterrows():
 
     tweet = new_tweet.strip() + '\n'
 
-    if line[0].strip() == 'labour':
+    if line[0].strip() == 'Labour':
         pos_dataset.write(tweet)
     else:
         neg_dataset.write(tweet)
