@@ -56,15 +56,15 @@ def get_all_tweets(screen_name):
 tweeter = []
 tweets = []
 
-#open('out.csv', 'wb')
+open('out.csv', 'wb')
 
 for elem in twitterHandles:
     print elem
 
     print twitterHandles.index(elem)
 
-#    if (twitterHandles.index(elem)+1)%190==0:
-#        time.sleep(3600)
+    if (twitterHandles.index(elem)+1)%200==0:
+        time.sleep(3600)
 
     keep=get_all_tweets(elem)
 
